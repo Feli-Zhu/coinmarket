@@ -13,6 +13,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import com.phyane.comm.CommonUtils;
 import com.phyane.param.CoinMarketParam;
 
 public class HtmlParaser extends Thread {

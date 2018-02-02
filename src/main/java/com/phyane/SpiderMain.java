@@ -2,8 +2,9 @@ package com.phyane;
 
 import java.util.List;
 
+import com.phyane.comm.CommonUtils;
+import com.phyane.comm.JsonUtil;
 import com.phyane.param.CoinMarketParam;
-import com.phyane.spider.CommonUtils;
 import com.phyane.spider.HtmlParaser;
 import com.phyane.spider.UrlParaser;
 
@@ -24,7 +25,7 @@ public class SpiderMain {
 		HtmlParaser hp = new HtmlParaser();
 		String html = wcr.paraseUrl2Html(url);
 		List<CoinMarketParam> list = hp.paraseHtml(html);
-		String json = CommonUtils.obj2Json(list);
+		String json = JsonUtil.obj2Json(list);
 		System.out.println(json);
 	}
 

@@ -1,4 +1,4 @@
-package com.phyane.spider;
+package com.phyane.comm;
 
 import java.util.Collection;
 import java.util.regex.Matcher;
@@ -35,17 +35,4 @@ public class CommonUtils {
 		return mt.matches();
 	}
 	
-	public static String obj2Json(Object obj) {
-		String ret = null;
-		if(obj instanceof Collection) {
-			JSONArray array = new JSONArray();
-			array.addAll((Collection)obj);
-			ret = array.toJSONString();
-		}else {
-			Object json = JSONObject.toJSON(obj);
-			ret = json.toString();
-		}
-		return ret;
-	}
-
 }
