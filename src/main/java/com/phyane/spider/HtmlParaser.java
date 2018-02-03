@@ -38,7 +38,7 @@ public class HtmlParaser extends Thread {
 		os.write(content.getBytes());
 		os.close();
 	}
-	public List<CoinMarketParam> paraseHtml(String html) throws Exception{
+	public List<CoinMarketParam> paraseCoinMarketCapHtml(String html) throws Exception{
 		List<CoinMarketParam> marketList = new ArrayList<CoinMarketParam>();
 		try {
 			Document doc = Jsoup.parse(html);
@@ -112,6 +112,35 @@ public class HtmlParaser extends Thread {
 			e.printStackTrace();
 		}
 		return marketList;
+	}
+	
+	public static List<CoinMarketParam> paraseCoinGeCkoMarketHtml(String html) {
+		List<CoinMarketParam> list = new ArrayList<CoinMarketParam>();
+		Document doc = Jsoup.parse(html);
+		Elements elemts = doc.getElementsByTag("table");
+		Element table = elemts.first();
+		Elements tr = table.select("tr");
+		Iterator<Element> iterators = tr.iterator();
+		while(iterators.hasNext()) {
+			Element ele = iterators.next();
+			Elements tds = ele.select("td");
+			if(tds.size() == 4) {
+				CoinMarketParam param = new CoinMarketParam();
+				String name = tds.get(0).html();
+				String priceStr = tds.get(1).html();
+				String marketCapStr = tds.get(2).html();
+				String volumeStr = tds.get(3).html();
+				param.setCoinName(name);
+				float price = new Float(CommonUtils.moneyDataDeal(priceStr));
+				param.setPrice(price);
+				double marketCap = new Double(CommonUtils.moneyDataDeal(marketCapStr));
+				param.setMarketCap(marketCap);
+				double volume = new Double(CommonUtils.moneyDataDeal(volumeStr));
+				param.setVolume(volume);
+				list.add(param);
+			}
+		}
+		return list;
 	}
 
 	

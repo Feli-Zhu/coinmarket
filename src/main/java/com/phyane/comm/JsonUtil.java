@@ -2,11 +2,11 @@ package com.phyane.comm;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SimplePropertyPreFilter;
 
 public class JsonUtil {
 	
@@ -37,6 +37,11 @@ public class JsonUtil {
 			ret = json.toString();
 		}
 		return ret;
+	}
+	
+	private static SimplePropertyPreFilter getJsonConfig(Class cls,String[] params){
+		SimplePropertyPreFilter filter = new SimplePropertyPreFilter(cls, params);
+		return filter;
 	}
 	
 }
