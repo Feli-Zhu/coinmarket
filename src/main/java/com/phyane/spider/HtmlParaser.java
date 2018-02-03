@@ -15,6 +15,8 @@ import org.jsoup.select.Elements;
 
 import com.phyane.comm.CommonUtils;
 import com.phyane.param.CoinMarketParam;
+import com.phyane.spider.Constant;
+
 
 public class HtmlParaser extends Thread {
 

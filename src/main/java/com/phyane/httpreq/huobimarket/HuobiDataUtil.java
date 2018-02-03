@@ -36,7 +36,6 @@ public class HuobiDataUtil {
 		Map<String,Object> headers = new HashMap<String,Object>();
 		headers.put("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36");
 		String result = HttpsClientRequest.SendHttpsGET(url, null,headers);
-		System.out.println(result);
 		HuobiMarket<KLineDataParam> ret = JsonUtil.json2Obj(result, HuobiMarket.class);
 		return ret;
 	}
@@ -51,7 +50,6 @@ public class HuobiDataUtil {
 		Map<String,Object> headers = new HashMap<String,Object>();
 		headers.put("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36");
 		String result = HttpsClientRequest.SendHttpsGET(url, null,headers);
-		System.out.println(result);
 		HuobiMarket<MergedMarketParam> ret = JsonUtil.json2Obj(result, HuobiMarket.class);
 		if(ret != null) {
 			String tick = ret.getTick();
@@ -73,7 +71,6 @@ public class HuobiDataUtil {
 		Map<String,Object> headers = new HashMap<String,Object>();
 		headers.put("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36");
 		String result = HttpsClientRequest.SendHttpsGET(url, null,headers);
-		System.out.println(result);
 		HuobiMarket<MergedMarketParam> ret = JsonUtil.json2Obj(result, HuobiMarket.class);
 		if(ret != null) {
 			String tick = ret.getTick();
@@ -92,7 +89,6 @@ public class HuobiDataUtil {
 		Map<String,Object> headers = new HashMap<String,Object>();
 		headers.put("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36");
 		String result = HttpsClientRequest.SendHttpsGET(url, null,headers);
-		System.out.println(result);
 		HuobiMarket<TradeDetail> ret = JsonUtil.json2Obj(result, HuobiMarket.class);
 		detail = JsonUtil.json2Obj(ret.getTick(), TradeDetail.class);
 		return detail;
@@ -108,7 +104,6 @@ public class HuobiDataUtil {
 		Map<String,Object> headers = new HashMap<String,Object>();
 		headers.put("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36");
 		String result = HttpsClientRequest.SendHttpsGET(url, null,headers);
-		System.out.println(result);
 		HuobiMarket<TradeDetail> ret = JsonUtil.json2Obj(result, HuobiMarket.class);
 		detail = JsonUtil.json2Obj(ret.getTick(), TradeDetail.class);
 		return detail;
@@ -124,7 +119,6 @@ public class HuobiDataUtil {
 		Map<String,Object> headers = new HashMap<String,Object>();
 		headers.put("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36");
 		String result = HttpsClientRequest.SendHttpsGET(url, null,headers);
-		System.out.println(result);
 		HuobiMarket<KLineDataParam> ret = JsonUtil.json2Obj(result, HuobiMarket.class);
 		detail = JsonUtil.json2Obj(ret.getTick(), KLineDataParam.class);
 		return detail;
@@ -132,34 +126,28 @@ public class HuobiDataUtil {
 	
 	/**查询系统支持的所有交易对及精�?*/
 	public static List<MarketSupportParam> getMarketSupport() throws Exception{
-		MarketSupportParam detail = null;
 		String url = "https://api.huobi.pro/v1/common/symbols";
 		Map<String,Object> headers = new HashMap<String,Object>();
 		headers.put("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36");
 		String result = HttpsClientRequest.SendHttpsGET(url, null,headers);
-		System.out.println(result);
 		HuobiMarket<MarketSupportParam> ret = JsonUtil.json2Obj(result.replaceAll("-", "_"), HuobiMarket.class);
 		return ret.getData();
 	}
 	/**查询系统支持的所有交易对及精�?*/
 	public static List<String> getSupportCurrency() throws Exception{
-		MarketSupportParam detail = null;
 		String url = "https://api.huobi.pro/v1/common/currencys";
 		Map<String,Object> headers = new HashMap<String,Object>();
 		headers.put("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36");
 		String result = HttpsClientRequest.SendHttpsGET(url, null,headers);
-		System.out.println(result);
 		HuobiMarket<String> ret = JsonUtil.json2Obj(result.replaceAll("-", "_"), HuobiMarket.class);
 		return ret.getData();
 	}
 	/**查询系统当前时间*/
 	public static Date getCurrentTimestamp() throws Exception{
-		MarketSupportParam detail = null;
 		String url = "https://api.huobi.pro/v1/common/timestamp";
 		Map<String,Object> headers = new HashMap<String,Object>();
 		headers.put("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36");
 		String result = HttpsClientRequest.SendHttpsGET(url, null,headers);
-		System.out.println(result);
 		Map<String, Object> ret = JsonUtil.json2Obj(result,Map.class);
 		Date dt = new Date();
 		dt.setTime(new Long(ret.get("data").toString()));

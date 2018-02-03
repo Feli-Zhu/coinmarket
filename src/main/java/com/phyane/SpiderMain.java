@@ -2,7 +2,6 @@ package com.phyane;
 
 import java.util.List;
 
-import com.phyane.comm.CommonUtils;
 import com.phyane.comm.JsonUtil;
 import com.phyane.param.CoinMarketParam;
 import com.phyane.spider.HtmlParaser;
