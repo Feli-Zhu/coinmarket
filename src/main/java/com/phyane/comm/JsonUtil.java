@@ -39,8 +39,10 @@ public class JsonUtil {
 		return ret;
 	}
 	
-	private static SimplePropertyPreFilter getJsonConfig(Class cls,String[] params){
+	public static SimplePropertyPreFilter getJsonConfig(Class cls,String[] params){
 		SimplePropertyPreFilter filter = new SimplePropertyPreFilter(cls, params);
+		System.out.println(params);
+		System.out.println(filter.getExcludes());
 		return filter;
 	}
 	
