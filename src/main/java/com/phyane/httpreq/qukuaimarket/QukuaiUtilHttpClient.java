@@ -7,10 +7,12 @@ import com.phyane.comm.JsonUtil;
 import com.phyane.httpreq.qukuaimarket.param.AddressListParam;
 import com.phyane.httpreq.qukuaimarket.param.AddressParam;
 import com.phyane.httpreq.qukuaimarket.param.BlockInfoParam;
+import com.phyane.httpreq.qukuaimarket.param.MarketParam;
 import com.phyane.spider.Constant;
 
 public class QukuaiUtilHttpClient {
 	
+	/*top100地址*/
 	public static List<AddressParam> getTop100AddressList() throws Exception{
 		String url = "http://open.qukuai.com/topaddress?key=" + Constant.QUKUAI_API_KEY;
 		String result = HttpsClientRequest.SendHttpsGET(url, null, null);
@@ -51,24 +53,44 @@ public class QukuaiUtilHttpClient {
 		return block;
 	}
 	/*获取难度 */
-	public static void getDifficulty()throws Exception {
+	public static MarketParam getDifficulty()throws Exception {
+		MarketParam ret = null;
 		String url = "http://open.qukuai.com/difficulty?key="+Constant.QUKUAI_API_KEY;
 		String result = HttpsClientRequest.SendHttpsGET(url, null, null);
+		if(result != null) {
+			ret = JsonUtil.json2Obj(result, MarketParam.class);
+		}
+		return ret;
 	}
 	/*获取算力 */
-	public static void getCalculateAbility()throws Exception {
+	public static MarketParam getCalculateAbility()throws Exception {
+		MarketParam ret = null;
 		String url = "http://open.qukuai.com/hashps?key="+Constant.QUKUAI_API_KEY;
 		String result = HttpsClientRequest.SendHttpsGET(url, null, null);
+		if(result != null) {
+			ret = JsonUtil.json2Obj(result, MarketParam.class);
+		}
+		return ret;
 	}
 	/*获取当前高度 */
-	public static void getCurrentHeigh()throws Exception {
+	public static MarketParam getCurrentHeigh()throws Exception {
+		MarketParam ret = null;
 		String url = "http://open.qukuai.com/height?key="+Constant.QUKUAI_API_KEY;
 		String result = HttpsClientRequest.SendHttpsGET(url, null, null);
+		if(result != null) {
+			ret = JsonUtil.json2Obj(result, MarketParam.class);
+		}
+		return ret;
 	}
 	/*获取比特币总量 */
-	public static void getTotalBitCoin()throws Exception {
+	public static MarketParam getTotalBitCoin()throws Exception {
+		MarketParam ret = null;
 		String url = "http://open.qukuai.com/total?key="+Constant.QUKUAI_API_KEY;
 		String result = HttpsClientRequest.SendHttpsGET(url, null, null);
+		if(result != null) {
+			ret = JsonUtil.json2Obj(result, MarketParam.class);
+		}
+		return ret;
 	}
 	/*获取地址的账户信息 */
 	public static void getAccountInfoByAddr(String address)throws Exception {
@@ -90,7 +112,4 @@ public class QukuaiUtilHttpClient {
 		String url = "http://open.qukuai.com/transaction/"+tradeId+"?key="+Constant.QUKUAI_API_KEY;
 		String result = HttpsClientRequest.SendHttpsGET(url, null, null);
 	}
-	
-	
-
 }

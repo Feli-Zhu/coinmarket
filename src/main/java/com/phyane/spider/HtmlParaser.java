@@ -143,5 +143,10 @@ public class HtmlParaser extends Thread {
 		return list;
 	}
 
+	public void paraseBitstampMarketHtml(String html) throws Exception{
+		Document doc = Jsoup.parse(html);
+		Elements divs = doc.select("div[data-slick-index]");
+		System.out.println(divs.size());
+	}
 	
 }
